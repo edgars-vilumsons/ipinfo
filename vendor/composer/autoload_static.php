@@ -71,11 +71,26 @@ class ComposerStaticInit55344e0d73257dfafb504f047e268a9a
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'L' => 
+        array (
+            'LucidFrame\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/phplucidframe/console-table/src',
+            ),
+            'LucidFrameTest\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/phplucidframe/console-table/tests',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit55344e0d73257dfafb504f047e268a9a::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit55344e0d73257dfafb504f047e268a9a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit55344e0d73257dfafb504f047e268a9a::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

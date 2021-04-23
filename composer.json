@@ -1,5 +1,6 @@
 {
     "require": {
-        "ipinfo/ipinfo": "^2.0"
+        "ipinfo/ipinfo": "^2.0",
+        "phplucidframe/console-table": "^1.2"
     }
 }
