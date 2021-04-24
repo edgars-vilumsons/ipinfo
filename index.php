@@ -1,22 +1,21 @@
 <?php
-
+//185.154.220.186
 require 'vendor/autoload.php';
 include 'includes/autoloader.inc.php';
 use ipinfo\ipinfo\IPinfo;
+use LucidFrame\Console\ConsoleTable;
 
 
-/*
-$exampleIp = '185.154.220.186';
-$client = new IPinfo();
-$ip_address = $exampleIp;
-$details = $client->getDetails($ip_address);
-var_dump($details);
-*/
+
+if ((count($argv)) == 2) {
 
 $ipInfo = new IPinfo();
-$table = new \LucidFrame\Console\ConsoleTable();
-$httpCall = new HttpCall($ipInfo, '185.154.220.186', $table);
-//var_dump($httpCall->getDetails());
-//$httpCall->jsonEncode();
-//$httpCall->echoDetails();
+$table = new ConsoleTable();
+$httpCall = new HttpCall($ipInfo, $argv[1], $table);
 $httpCall->echoTable();
+
+}
+
+if ((count($argv)) == 3) {
+    
+}

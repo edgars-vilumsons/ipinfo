@@ -23,16 +23,6 @@ class HttpCall
         return $this->details;
     }
 
-    public function echoDetails()
-    {
-        foreach ($this->details as $key => $value) {
-            //echo "$key => $value\n";
-            if (!is_array($value)) {
-                echo $key . " => " . $value . "\r\n";
-            }
-        }
-    }
-
     public function echoTable()
     {
         $arrays = [];
