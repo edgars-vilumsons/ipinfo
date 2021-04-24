@@ -1,5 +1,7 @@
 <?php
 
+namespace classes;
+
 use ipinfo\ipinfo\IPinfo;
 use LucidFrame\Console\ConsoleTable;
 
@@ -38,6 +40,10 @@ class HttpCall
             }
         }
         $this->table->display();
+    }
+
+    public function writeJson(){
+        return json_encode($this->details);
     }
 
 }

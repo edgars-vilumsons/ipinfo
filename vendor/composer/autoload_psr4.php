@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ipinfo\\ipinfo\\' => array($vendorDir . '/ipinfo/ipinfo/src'),
+    'classes\\' => array($baseDir . '/classes'),
     'Sabre\\Cache\\' => array($vendorDir . '/sabre/cache/lib'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
