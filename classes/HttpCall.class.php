@@ -11,6 +11,7 @@ class HttpCall
     private $ipAddress;
     private $details;
     private $table;
+    private $prepArrays;
 
     public function __construct(IPinfo $client, string $ipAddress, ConsoleTable $table)
     {
@@ -25,24 +26,37 @@ class HttpCall
         return $this->details;
     }
 
+    public function prepareDetailsForTable()
+    {
+        foreach ($this->details as $key => $value) {
+            if (!is_array($value)) {
+                $this->prepArrays[] = [$key, $value];
+            }
+        }
+        return $this->prepArrays;
+    }
+
     public function echoTable()
     {
+        /*
         $arrays = [];
         foreach ($this->details as $key => $value) {
             if (!is_array($value)) {
-                $arrays[] = [$key, $value] ;
+                $arrays[] = [$key, $value];
             }
         }
-
-        foreach ($arrays as $array){
+        */
+        foreach ($this->prepArrays as $array) {
             {
                 $this->table->addRow($array);
             }
         }
+
         $this->table->display();
     }
 
-    public function writeJson(){
+    public function writeJson()
+    {
         return json_encode($this->details);
     }
 
