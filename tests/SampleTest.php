@@ -1,6 +1,7 @@
 <?php
 
 use classes\HttpCall;
+use classes\Validator;
 use ipinfo\ipinfo\IPinfo;
 use LucidFrame\Console\ConsoleTable;
 use EnricoStahn\JsonAssert\Assert as JsonAssert;
@@ -55,10 +56,19 @@ class SampleTest extends \PHPUnit\Framework\TestCase
         $table = new ConsoleTable();
         $httpCall = new HttpCall($ipInfo, '1.1.1.1', $table);
         $json = json_decode($httpCall->encodeJson());
-        
+
         $this->assertJsonMatchesSchema($json, './forTest.json');
 
 
     }
+
+    public function testValidValidatorValidateIp()
+    {
+
+        $bool = Validator::validateIp('1.1.1.1');
+        $this->assertTrue($bool, $message = "Must return true if valid ip");
+
+    }
+
 
 }
