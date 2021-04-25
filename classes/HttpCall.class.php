@@ -51,5 +51,4 @@ class HttpCall
     {
         return json_encode($this->details);
     }
-
 }

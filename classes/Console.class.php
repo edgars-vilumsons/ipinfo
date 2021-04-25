@@ -7,18 +7,16 @@ use ipinfo\ipinfo\IPinfo;
 use LucidFrame\Console\ConsoleTable;
 use classes\HttpCall;
 
-
 class IpInfoConsole
 {
-
     public static function start($argv)
     {
-        if ((count($argv)) == 1){
+        if ((count($argv)) == 1) {
             echo "No arguments passed!";
             return;
         }
 
-        if ((count($argv)) > 3){
+        if ((count($argv)) > 3) {
             echo "Too many arguments";
             return;
         }

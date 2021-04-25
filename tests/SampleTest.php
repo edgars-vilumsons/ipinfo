@@ -8,8 +8,18 @@ use EnricoStahn\JsonAssert\Assert as JsonAssert;
 
 class SampleTest extends \PHPUnit\Framework\TestCase
 {
-
     use JsonAssert;
+
+    protected $ipInfo;
+    protected $table;
+    protected $httpCall;
+
+    protected function setUp(): void
+    {
+        $this->ipInfo = new IPinfo();
+        $this->table = new ConsoleTable();
+        $this->httpCall = new HttpCall($this->ipInfo, '1.1.1.1', $this->table);
+    }
 
     public function testTrueAssertsToTrue()
     {
@@ -18,10 +28,7 @@ class SampleTest extends \PHPUnit\Framework\TestCase
 
     public function testHttpCallGetDetails()
     {
-        $ipInfo = new IPinfo();
-        $table = new ConsoleTable();
-        $httpCall = new HttpCall($ipInfo, '1.1.1.1', $table);
-        $obj = $httpCall->getDetails();
+        $obj = $this->httpCall->getDetails();
 
         $this->assertIsObject($obj);
         $this->assertObjectHasAttribute('ip', $obj);
@@ -41,34 +48,22 @@ class SampleTest extends \PHPUnit\Framework\TestCase
 
     public function testPrepareDetailsForTable()
     {
-        $ipInfo = new IPinfo();
-        $table = new ConsoleTable();
-        $httpCall = new HttpCall($ipInfo, '1.1.1.1', $table);
-        $arr = $httpCall->prepareDetailsForTable();
+        $arr = $this->httpCall->prepareDetailsForTable();
 
         $this->assertIsArray($arr);
-        $this->assertCount(2,$arr[0], $message = "Array 0 index doesn't contains 2 elements");
+        $this->assertCount(2, $arr[0], $message = "Array 0 index doesn't contains 2 elements");
     }
 
     public function testJsonDocumentIsValid()
     {
-        $ipInfo = new IPinfo();
-        $table = new ConsoleTable();
-        $httpCall = new HttpCall($ipInfo, '1.1.1.1', $table);
-        $json = json_decode($httpCall->encodeJson());
+        $json = json_decode($this->httpCall->encodeJson());
 
         $this->assertJsonMatchesSchema($json, './forTest.json');
-
-
     }
 
     public function testValidValidatorValidateIp()
     {
-
         $bool = Validator::validateIp('1.1.1.1');
         $this->assertTrue($bool, $message = "Must return true if valid ip");
-
     }
-
-
 }
