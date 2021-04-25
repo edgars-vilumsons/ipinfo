@@ -28,7 +28,7 @@ class IpInfoConsole
             if (!file_exists($dir)) {
                 mkdir($dir, 0744);
             }
-            file_put_contents($dir . '/ipInfo.json', $httpCall->writeJson());
+            file_put_contents($dir . '/ipInfo.json', $httpCall->encodeJson());
 
         }
     }

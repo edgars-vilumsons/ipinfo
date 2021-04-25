@@ -44,7 +44,6 @@ class SampleTest extends \PHPUnit\Framework\TestCase
 
         $this->assertIsArray($arr);
         $this->assertCount(2,$arr[0], $message = "Array 0 index doesn't contains 2 elements");
-
     }
 
 }

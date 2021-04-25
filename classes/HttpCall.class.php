@@ -38,14 +38,6 @@ class HttpCall
 
     public function echoTable()
     {
-        /*
-        $arrays = [];
-        foreach ($this->details as $key => $value) {
-            if (!is_array($value)) {
-                $arrays[] = [$key, $value];
-            }
-        }
-        */
         foreach ($this->prepArrays as $array) {
             {
                 $this->table->addRow($array);
@@ -55,7 +47,7 @@ class HttpCall
         $this->table->display();
     }
 
-    public function writeJson()
+    public function encodeJson()
     {
         return json_encode($this->details);
     }
