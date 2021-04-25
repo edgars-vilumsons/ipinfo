@@ -8,5 +8,8 @@
         "psr-4": {
            "classes\\": "classes/"
         }
+    },
+    "require-dev": {
+        "estahn/phpunit-json-assertions": "^3.0"
     }
 }
