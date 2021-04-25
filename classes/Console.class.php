@@ -13,6 +13,16 @@ class IpInfoConsole
 
     public static function start($argv)
     {
+        if ((count($argv)) == 1){
+            echo "No arguments passed!";
+            return;
+        }
+
+        if ((count($argv)) > 3){
+            echo "Too many arguments";
+            return;
+        }
+
         if (Validator::validateIp($argv[1])) {
 
             $ipInfo = new IPinfo();
@@ -37,11 +47,11 @@ class IpInfoConsole
                     file_put_contents($dir . '/ipInfo.json', $httpCall->encodeJson());
 
                 } else {
-                    echo "Path name contains at least one illegal character";
+                    echo "Path name contains at least one illegal character!";
                 }
             }
         } else {
-            echo "Ip address not valid";
+            echo "Ip address not valid!";
         }
     }
 }
